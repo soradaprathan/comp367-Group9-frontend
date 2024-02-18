@@ -28,6 +28,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { EditorModule } from 'primeng/editor';
+import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
+import { CategoriesFormsComponent } from './pages/categories/categories-forms/categories-forms.component';
 
 const UX_MODULE = [
     CardModule,
@@ -67,7 +69,15 @@ const routes: Routes = [
             },
             {
                 path: 'categories',
-                component: DashboardComponent
+                component: CategoriesListComponent
+            },
+            {
+                path: 'categories/form',
+                component: CategoriesFormsComponent
+            },
+            {
+                path: 'categories/form/:id',
+                component: CategoriesFormsComponent
             },
             {
                 path: 'orders',
@@ -78,7 +88,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [AppComponent, SidebarComponent, ShellComponent, DashboardComponent, ProductsListComponent, ProductsFormComponent],
+    declarations: [AppComponent, SidebarComponent, ShellComponent, DashboardComponent, ProductsListComponent, ProductsFormComponent, CategoriesListComponent, CategoriesFormsComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
