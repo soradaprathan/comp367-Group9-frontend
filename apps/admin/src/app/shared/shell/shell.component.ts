@@ -7,5 +7,6 @@ import { Component, OnInit } from '@angular/core';
 export class ShellComponent implements OnInit {
     constructor() {}
 
+    // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
     ngOnInit(): void {}
 }
