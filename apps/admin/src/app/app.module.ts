@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { CategoriesFormsComponent } from './pages/categories/categories-forms/categories-forms.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { AuthGuard, JwtInterceptor, UsersModule } from '@toys-hub/users';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -56,6 +57,7 @@ const routes: Routes = [
     {
         path: '',
         component: ShellComponent,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'dashboard',
@@ -125,9 +127,10 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
+        UsersModule,
         ...UX_MODULE
     ],
-    providers: [MessageService, ConfirmationService],
+    providers: [MessageService, ConfirmationService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
