@@ -26,6 +26,7 @@ export class OrdersDetailComponent implements OnInit {
   }
 
   private _mapOrderStatus() {
+    console.log(ORDER_STATUS);
     this.orderStatuses = Object.keys(ORDER_STATUS).map((key) => {
       return {
         id: key,
@@ -40,12 +41,14 @@ export class OrdersDetailComponent implements OnInit {
         this.orderService.getOrder(params.id).subscribe((order) => {
           this.order = order;
           this.selectedStatus = order.status;
+          console.log(this.order)
         });
       }
     });
   }
 
   onStatusChange(event) {
+    console.log(event)
     this.orderService.updateOrder({ status: event.value }, this.order.id).subscribe(
       () => {
         this.messageService.add({

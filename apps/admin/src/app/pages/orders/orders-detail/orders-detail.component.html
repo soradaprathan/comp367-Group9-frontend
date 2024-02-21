@@ -17,12 +17,13 @@
           <h5>Order Status</h5>
           <p-dropdown
             [options]="orderStatuses"
-            optionLabel="name"
-            optionValue="id"
+            optionLabel = "name"
+            optionValue = "id"
+            [(ngModel)]="order.status"
+            [style]="{ width: '100%' }"
+            [autoWidth]="false"
             (onChange)="onStatusChange($event)"
-            [(ngModel)]="selectedStatus"
-          >
-          </p-dropdown>
+          ></p-dropdown>
         </div>
 
         <div class="p-col-4">
@@ -31,6 +32,7 @@
         </div>
       </div>
     </p-fieldset>
+
     <p-fieldset legend="Order Items" styleClass="p-mb-4" [toggleable]="true">
       <div class="p-grid p-mb-5">
         <div class="p-col-2 p-text-bold">Name</div>
@@ -41,12 +43,12 @@
         <div class="p-col-2 p-text-bold">Subtotal</div>
       </div>
       <div class="p-grid p-mb-5" *ngFor="let orderItem of order.orderItems">
-        <div class="p-col-2">{{ orderItem.product.name }}</div>
-        <div class="p-col-2">{{ orderItem.product.brand }}</div>
-        <div class="p-col-2">{{ orderItem.product.category.name }}</div>
-        <div class="p-col-2">{{ orderItem.product.price | currency }}</div>
-        <div class="p-col-2">{{ orderItem.quantity }}</div>
-        <div class="p-col-2">{{ orderItem.product.price * orderItem.quantity | currency }}</div>
+        <div class="p-col-2">{{ orderItem.product?.name }}</div>
+        <div class="p-col-2">{{ orderItem.product?.brand }}</div>
+        <div class="p-col-2">{{ orderItem.product?.category.name }}</div>
+        <div class="p-col-2">{{ orderItem.product?.price | currency }}</div>
+        <div class="p-col-2">{{ orderItem?.quantity }}</div>
+        <div class="p-col-2">{{ orderItem.product?.price * orderItem?.quantity | currency }}</div>
       </div>
       <div class="p-grid" style="color: green">
         <div class="p-col-2 p-offset-8 p-text-bold">Total Price</div>
@@ -54,6 +56,7 @@
         <div class="p-col-2 p-text-bold">{{ order.totalPrice | currency }}</div>
       </div>
     </p-fieldset>
+
     <p-fieldset legend="Order Address" styleClass="p-mb-4" [toggleable]="true">
       <div class="p-grid">
         <div class="p-col-4">
@@ -79,3 +82,5 @@
     </p-fieldset>
   </p-card>
 </div>
+
+
