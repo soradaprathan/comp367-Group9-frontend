@@ -17,10 +17,12 @@
 
 //shared
 @import './apps/admin/shell.scss';
+@import './apps/admin/dashboard.scss';
 
 //Page
 @import './apps/shop/pages/home-page.scss';
 @import './apps/shop/pages/products-list-page.scss';
+
 
 //Libs
 @import './libs/products/product-item.scss';

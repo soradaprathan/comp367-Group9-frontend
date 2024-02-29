@@ -1,0 +1,40 @@
+.d-item {
+  display: flex;
+  text-align: center;
+  color: var(--surface-0);
+  justify-content: space-between;
+
+  .pi {
+    font-size: 4em;
+    margin-bottom: 15px;
+  }
+
+  .name {
+    font-size: 1.4em;
+  }
+
+  .number {
+    margin-top: 50px;
+    font-size: 2.5em;
+  }
+}
+
+.d-orders {
+  background-color: #74EBD5;
+  background-image: linear-gradient(160deg, #74EBD5 0%, #9FACE6 100%);
+}
+
+.d-products {
+  background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+}
+
+.d-users {
+  background-color: #08AEEA;
+  background-image: linear-gradient(45deg, #08AEEA 0%, #2AF598 100%);
+}
+
+.d-totalsales {
+  background-color: #FF3CAC;
+  background-image: linear-gradient(45deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+}
