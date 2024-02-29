@@ -35,6 +35,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { EditorModule } from 'primeng/editor';
 import { TagModule } from 'primeng/tag';
 import { InputMaskModule } from 'primeng/inputmask';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrdersDetailComponent } from './pages/orders/orders-detail/orders-detail.component';
 
 const UX_MODULE = [
     CardModule,
@@ -88,10 +90,6 @@ const routes: Routes = [
                 component: CategoriesFormsComponent
             },
             {
-                path: 'orders',
-                component: DashboardComponent
-            },
-            {
                 path: 'users',
                 component: UsersListComponent
             },
@@ -102,7 +100,16 @@ const routes: Routes = [
             {
                 path: 'users/form/:id',
                 component: UsersFormComponent
+            },
+            {
+                path: 'orders',
+                component: OrdersListComponent
+            },
+            {
+                path: 'orders/:id',
+                component: OrdersDetailComponent
             }
+
         ]
     }
 ];
@@ -118,7 +125,9 @@ const routes: Routes = [
         CategoriesListComponent,
         CategoriesFormsComponent,
         UsersListComponent,
-        UsersFormComponent
+        UsersFormComponent,
+        OrdersListComponent,
+        OrdersDetailComponent
     ],
     imports: [
         BrowserModule,
