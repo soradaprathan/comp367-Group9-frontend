@@ -7,13 +7,19 @@
                     <div class="p-toolbar-group-left">
                         <p-button styleClass="p-button-success" label="New" icon="pi pi-plus"
                             routerLink="form"></p-button>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" [(ngModel)]="globalFilterValue" (input)="applyFilter()"
+                                placeholder="Search..." />
+                        </span>
                     </div>
                 </p-toolbar>
             </div>
         </div>
+
         <div class="p-grid">
             <div class="p-col-12">
-                <p-table [paginator]="true" [rows]="10" [value]="products" styleClass="p-datatable-gridlines"
+                <p-table #dt [paginator]="true" [rows]="10" [value]="products" styleClass="p-datatable-gridlines"
                     [globalFilterFields]="['name']">
                     <ng-template pTemplate="header">
                         <tr>

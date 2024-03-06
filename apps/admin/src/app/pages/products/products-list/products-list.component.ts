@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '@toys-hub/products';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 
 @Component({
     selector: 'admin-products-list',
@@ -10,6 +11,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class ProductsListComponent implements OnInit {
     products = [];
+    globalFilterValue = '';
+
+    @ViewChild('dt') table: Table;
+
     constructor(
         private productsService: ProductsService,
         private router: Router,
@@ -22,6 +27,10 @@ export class ProductsListComponent implements OnInit {
         this._getProducts();
     }
 
+    applyFilter() {
+        this.table.filterGlobal(this.globalFilterValue, 'contains');
+    }
+
     private _getProducts() {
         this.productsService.getProducts().subscribe((products) => {
             this.products = products;
@@ -31,6 +40,7 @@ export class ProductsListComponent implements OnInit {
     updateProduct(productid: string) {
         this.router.navigateByUrl(`products/form/${productid}`);
     }
+
     deleteProduct(productId: string) {
         this.confirmationService.confirm({
             message: 'Do you want to delete this Product?',
