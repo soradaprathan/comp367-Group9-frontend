@@ -15,11 +15,11 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@toys-hub/ui": ["libs/ui/src/index.ts"],
             "@toys-hub/products": ["libs/products/src/index.ts"],
             "@toys-hub/users": ["libs/users/src/index.ts"],
             "@toys-hub/orders": ["libs/orders/src/index.ts"],
-            "@env/*": ["environments/*"]
+            "@env/*": ["environments/*"],
+            "@toys-hub/ui": ["libs/ui/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
