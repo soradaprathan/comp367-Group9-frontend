@@ -14,6 +14,7 @@ import { NavComponent } from './shared/nav/nav.component';
 import { ProductsModule } from '@toys-hub/products';
 import { UiModule } from '@toys-hub/ui';
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersModule } from '@toys-hub/orders';
 
 const routes: Routes = [
     {
@@ -31,7 +32,8 @@ const routes: Routes = [
         ProductsModule,
         AccordionModule,
         BrowserAnimationsModule,
-        UiModule
+        UiModule,
+        OrdersModule
       ],
     providers: [],
     bootstrap: [AppComponent]
