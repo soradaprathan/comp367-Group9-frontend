@@ -20,6 +20,7 @@ export class ProductsFormComponent implements OnInit {
     imageDisplay: string | ArrayBuffer;
     currentProductId: string;
     endsubs$: Subject<any> = new Subject();
+    private selectedFiles: File[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -40,7 +41,9 @@ export class ProductsFormComponent implements OnInit {
         this.endsubs$.next();
         this.endsubs$.complete();
     }
-
+    onCancel() {
+        this.location.back();
+    }
     private _initForm() {
         this.form = this.formBuilder.group({
             name: ['', Validators.required],
@@ -143,6 +146,25 @@ export class ProductsFormComponent implements OnInit {
         });
     }
 
+    uploadGalleryImages() {
+        const formData = new FormData();
+        if (this.selectedFiles.length > 0) {
+            Array.from(this.selectedFiles).forEach((file) => {
+                formData.append('images', file);
+            });
+            this.productsService.updateProductImages(this.currentProductId, formData).subscribe({
+                next: (response) => {
+                    console.log('Gallery images uploaded successfully');
+                },
+                error: (error) => {
+                    console.error('Error uploading gallery images', error);
+                }
+            });
+        } else {
+            console.log('No images selected for upload');
+        }
+    }
+
     onSubmit() {
         this.isSubmitted = true;
         if (this.form.invalid) return;
@@ -152,14 +174,17 @@ export class ProductsFormComponent implements OnInit {
         });
         if (this.editmode) {
             this._updateProduct(productFormData);
+            this.uploadGalleryImages();
         } else {
             this._addProduct(productFormData);
+            this.uploadGalleryImages();
         }
     }
     onCancle() {}
 
     onImageUpload(event) {
         const file = event.target.files[0];
+        this.selectedFiles = event.target.files;
         if (file) {
             this.form.patchValue({ image: file });
             this.form.get('image').updateValueAndValidity();
