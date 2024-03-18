@@ -42,4 +42,8 @@ export class ProductsService {
     getFeaturedProducts(count: number): Observable<Product[]> {
         return this.http.get<Product[]>(`${this.apiURLProducts}/get/featured/${count}`);
     }
+    //upload multiple images
+    updateProductImages(productId: string, formData: FormData): Observable<any> {
+        return this.http.put(`${this.apiURLProducts}/gallery-images/${productId}`, formData);
+    }
 }
