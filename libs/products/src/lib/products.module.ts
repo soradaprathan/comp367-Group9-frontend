@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { UiModule } from '@toys-hub/ui';
+import { ProductReviewsListComponent } from './pages/product-reviews-list/product-reviews-list.component';
+import { ReviewItemComponent } from './components/review-item/review-item.component';
 
 const routes: Routes = [
     {
@@ -27,6 +29,10 @@ const routes: Routes = [
     {
         path: 'products/:productid',
         component: ProductPageComponent
+    },
+    {
+        path: 'products/:productid/reviews',
+        component: ProductReviewsListComponent
     }
 ];
 @NgModule({
@@ -37,8 +43,10 @@ const routes: Routes = [
         ProductItemComponent,
         FeaturedProductsComponent,
         ProductsListComponent,
-        ProductPageComponent
+        ProductPageComponent,
+        ProductReviewsListComponent,
+        ReviewItemComponent
     ],
-    exports: [ProductsSearchComponent, CategoriesBannerComponent, ProductItemComponent, FeaturedProductsComponent, ProductsListComponent, ProductPageComponent]
+    exports: [ProductsSearchComponent, CategoriesBannerComponent, ProductItemComponent, FeaturedProductsComponent, ProductsListComponent, ProductPageComponent, ProductReviewsListComponent, ReviewItemComponent]
 })
 export class ProductsModule {}
