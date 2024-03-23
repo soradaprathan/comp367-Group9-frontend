@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReviewsService } from '../../services/reviews.service';
 import { ProductsService } from '../../services/products.service';
 import { Review } from '../../models/review';
@@ -16,18 +16,26 @@ import { Subject } from 'rxjs';
 export class ProductReviewsListComponent implements OnInit, OnDestroy {
   lstReviews: Review[] = [];
   product: Product;
+  currentProductId: string;
   endSubs$: Subject<any> = new Subject();
   avgRating = 0;
 
-  constructor(private prodService: ProductsService, private reviewService: ReviewsService, private route: ActivatedRoute) { }
+  constructor(private prodService: ProductsService, 
+                private reviewService: ReviewsService, 
+                private route: ActivatedRoute,
+                private router: Router) { }
 
   ngOnInit(): void {
-    this._getReviews();
+    // this._getReviews();
     this.route.params.subscribe((params) => {
       if (params.productid) {
-        this._getReviewsAverage(params.productid);
-        this._getProduct(params.productid);
-        this._getReviews([params.productid]);
+        this.currentProductId = params.productid;
+        this._getProduct(this.currentProductId);
+        this._getReviews(this.currentProductId);
+        this._getReviewsAverage(this.currentProductId);
+        // if(this.lstReviews.length > 0){
+          
+        // }
       }
     });
   }
@@ -38,13 +46,18 @@ export class ProductReviewsListComponent implements OnInit, OnDestroy {
   }
 
   private _getReviewsAverage(productid: string) {
-    this.reviewService
+    try{
+      this.reviewService
       .getReviewsAverage(productid)
       .pipe(takeUntil(this.endSubs$))
       .subscribe((avg: number) => {
         this.avgRating = avg['averageRating'];
         // console.log(this.avgRating);
       });
+    }catch(error){
+      console.log("Error getting average rating: ", error);
+    }
+    
   }
 
   private _getProduct(id: string) {
@@ -53,20 +66,30 @@ export class ProductReviewsListComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this.endSubs$))
         .subscribe((resProduct) => {
             this.product = resProduct;
-            // console.log(this.product);
+            console.log(this.product);
         });
-    this.product.rating = this.avgRating;
+    //this.product.rating = this.avgRating;
 }
 
-  private _getReviews(productid?: string[]) {
+  private _getReviews(productid?: string) {
 
+    console.log("Getting reviews for product id: ", this.currentProductId);
     this.reviewService
       .getReviews(productid)
       .pipe(takeUntil(this.endSubs$))
       .subscribe(reviews => {
-        // console.log(reviews);
+        console.log(reviews);
         this.lstReviews = reviews;
       });
+  }
+
+  navigateToAddReview(){
+    console.log("Naviganting to write review page");
+    this.router.navigate(['/products', this.product.id, 'write-review']);
+  }
+
+  navigateToProduct(){
+    this.router.navigate(['/products', this.product.id]);
   }
 
 }

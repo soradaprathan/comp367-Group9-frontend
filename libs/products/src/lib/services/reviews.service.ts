@@ -14,24 +14,24 @@ export class ReviewsService {
 
     constructor(private http: HttpClient) {}
 
-    getReviews(productFilter?: string[]): Observable<Review[]> {
+    getReviews(productFilter?: string): Observable<Review[]> {
         let params = new HttpParams();
         if (productFilter) {
-            params = params.append('product', productFilter.join(','));
+            params = params.append('product', productFilter);
         }
         return this.http.get<Review[]>(this.apiURLReviews, { params: params });
     }
 
-    createReview(reviewData: FormData): Observable<Review> {
-        return this.http.post<Review>(this.apiURLReviews, reviewData);
+    createReview(review: Review): Observable<Review> {
+        return this.http.post<Review>(this.apiURLReviews, review);
     }
 
     getReview(reviewId: string): Observable<Review> {
         return this.http.get<Review>(`${this.apiURLReviews}/${reviewId}`);
     }
 
-    updateReview(reviewData: FormData, reviewId: string): Observable<Review> {
-        return this.http.put<Review>(`${this.apiURLReviews}/${reviewId}`, reviewData);
+    updateReview(review: Review, reviewId: string): Observable<Review> {
+        return this.http.put<Review>(`${this.apiURLReviews}/${reviewId}`, review);
     }
 
     deleteReview(reviewId: string): Observable<any> {

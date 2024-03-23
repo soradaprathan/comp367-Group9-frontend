@@ -1,5 +1,25 @@
-.reviews-page {
-  padding: 20px;
+.review-page {
+  padding: 15px;
+  border: 1px solid var(--surface-200);
+  background-color: var(--surface-0);
+
+  button {
+    background-color: $primary-color;
+    border: 0;
+  }
+
+  .review {
+    &-form {
+      margin-top: 25px;
+    }
+
+    &-button {
+      margin-top: 20px;
+      button {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .page-title {
@@ -11,3 +31,4 @@
 .product-name {
   font-size: 20px;
 }
+

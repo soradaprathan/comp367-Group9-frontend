@@ -2,7 +2,7 @@ import { Product } from './product';
 
 export class Review {
     id?: string;
-    product?: Product;
+    product?: any;
     user?: any;
     comment?: string;
     rating?: number;
