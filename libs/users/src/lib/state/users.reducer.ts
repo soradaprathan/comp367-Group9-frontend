@@ -25,7 +25,7 @@ const usersReducer = createReducer(
     initialUsersState,
     on(UsersActions.buildUserSession, (state) => ({ ...state })),
     on(UsersActions.buildUserSessionSuccess, (state, action) => ({ ...state, user: action.user, isAuthenticated: true })),
-    on(UsersActions.buildUserSessionFailed, (state, action) => ({ ...state, user: null, isAuthenticated: false }))
+    on(UsersActions.buildUserSessionFailed, (state) => ({ ...state, user: null, isAuthenticated: false }))
 );
 
 export function reducer(state: UsersState | undefined, action: Action) {
