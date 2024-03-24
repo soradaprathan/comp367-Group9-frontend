@@ -15,6 +15,7 @@ import { ProductsModule } from '@toys-hub/products';
 import { UiModule } from '@toys-hub/ui';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersModule } from '@toys-hub/orders';
+import { UsersModule } from '@toys-hub/users';
 
 const routes: Routes = [
     {
@@ -33,7 +34,8 @@ const routes: Routes = [
         AccordionModule,
         BrowserAnimationsModule,
         UiModule,
-        OrdersModule
+        OrdersModule,
+        UsersModule
       ],
     providers: [],
     bootstrap: [AppComponent]
