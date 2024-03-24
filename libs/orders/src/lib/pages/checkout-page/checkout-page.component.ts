@@ -8,6 +8,7 @@ import { CartService } from '../../services/cart.service';
 import { Cart } from '../../models/cart';
 import { OrdersService } from '../../services/orders.service';
 import { ORDER_STATUS } from '../../order.constants';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'orders-checkout-page',
@@ -29,6 +30,7 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit(): void {
     this._initCheckoutForm();
+    this._autoFillUserData();
     this._getCartItems();
     this._getCountries();
   }
@@ -43,6 +45,22 @@ export class CheckoutPageComponent implements OnInit {
       zip: ['', Validators.required],
       apartment: ['', Validators.required],
       street: ['', Validators.required]
+    });
+  }
+
+  private _autoFillUserData() {
+    this.usersService.observeCurrentUser().pipe(take(1)).subscribe((user) => {
+      if (user) {
+        this.checkoutForm.name.setValue(user.name);
+        this.checkoutForm.email.setValue(user.email);
+        this.checkoutForm.phone.setValue(user.phone);
+        this.checkoutForm.city.setValue(user.city);
+        this.checkoutForm.country.setValue(user.country);
+        this.checkoutForm.zip.setValue(user.zip);
+        this.checkoutForm.apartment.setValue(user.apartment);
+        this.checkoutForm.street.setValue(user.street);
+      }
+      
     });
   }
 
