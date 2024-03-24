@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import * as countriesLib from 'i18n-iso-countries';
+import { UsersFacade } from '@toys-hub/users';
 declare const require;
 
 @Injectable({
@@ -13,7 +14,7 @@ declare const require;
 export class UsersService {
     apiURLUsers = environment.apiUrl + 'users';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private usersFacade: UsersFacade) {
         countriesLib.registerLocale(require('i18n-iso-countries/langs/en.json'));
     }
 
@@ -53,5 +54,7 @@ export class UsersService {
         return this.http.get<number>(`${this.apiURLUsers}/get/count`).pipe(map((objectValue: any) => objectValue.userCount));
     }
 
-    initAppSession() {}
+    initAppSession() {
+        this.usersFacade.buildUserSession();
+    }
 }
