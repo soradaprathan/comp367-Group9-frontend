@@ -18,9 +18,8 @@ export class LocalstorageService {
         localStorage.removeItem(TOKEN);
     }
 
-    isValidToken(): boolean {
+    isValidToken() {
         const token = this.getToken();
-
         if (token) {
             const tokenDecode = JSON.parse(atob(token.split('.')[1]));
             return !this._tokenExpired(tokenDecode.exp);
@@ -31,11 +30,12 @@ export class LocalstorageService {
 
     getUserIdFromToken() {
         const token = this.getToken();
-
         if (token) {
             const tokenDecode = JSON.parse(atob(token.split('.')[1]));
             if (tokenDecode) {
                 return tokenDecode.userId;
+            } else {
+                return null;
             }
         } else {
             return null;
