@@ -1,0 +1,30 @@
+<div class="review-item" *ngIf="review">
+    <div class="review-item-wrapper">
+        <div class="review-item-header">
+            <div class="header-left">
+                <h3 class="customername">{{review.user.name}}</h3>
+            </div>
+            
+            <div class="header-right">
+                <p-button *ngIf="review.user.id === currentUser" (click)="navigateToEditReview(review.product.id,review.id)" 
+                icon="pi pi-pencil" label="Edit" styleClass="p-button-sm"></p-button>
+            </div>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-8">
+                <p-rating class="rating" [(ngModel)]="review.rating" [cancel]="false" [disabled]="true"></p-rating>
+            </div>
+            <div class="p-col-8">
+                <h5 class="date">Reviewed on {{review.dateReview | date:'MMMM dd, yyyy'}}</h5>
+            </div>
+            
+            <div class="p-col-8">
+                <p *ngIf="review.order" class="verified">Order Verified</p>
+            </div>
+        </div>
+        <div class="review-item-body">
+            <p>{{ review.comment }}</p>
+        </div>
+
+    </div>
+</div>
