@@ -8,6 +8,7 @@ import { Product } from '../../models/product';
 import { takeUntil } from 'rxjs/operators';
 import { MessageService } from 'primeng/api';
 import { Subject, timer } from 'rxjs';
+import { UsersService } from '@toys-hub/users';
 
 @Component({
   selector: 'products-review-page',
@@ -18,7 +19,7 @@ export class ProductReviewPageComponent implements OnInit {
     private reviewService: ReviewsService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-
+    private usersService: UsersService,
     private router: Router) {
 
   }
@@ -30,21 +31,26 @@ export class ProductReviewPageComponent implements OnInit {
   rating: 0;
   editmode = false;
   currentReviewId: string;
-
-  // To-Do: Change this part when we have the user authentication
-  userId = '65cb99e758f3d520a8cc39e6';
+  userId: string;
 
   ngOnInit(): void {
-    this._initReviewForm();
-    this.route.params.subscribe((params) => {
-      if (params.productid) {
-        this._getProduct(params.productid);
-      }
-      if(params.reviewid){
-        this.currentReviewId = params.reviewid;
-      }
-    });
-    this._checkEditMode();
+
+    this._getCurrentUser();
+    //wait for the userId to be set
+    setTimeout(() => {
+      console.log("USERID: " + this.userId);
+      this._initReviewForm();
+      this.route.params.subscribe((params) => {
+        if (params.productid) {
+          this._getProduct(params.productid);
+        }
+        if (params.reviewid) {
+          this.currentReviewId = params.reviewid;
+        }
+      });
+      this._checkEditMode();
+    }, 100);
+
   }
 
   ngOnDestroy(): void {
@@ -143,11 +149,22 @@ export class ProductReviewPageComponent implements OnInit {
               comment: [review.comment, Validators.required],
             });
           });
-        
+
       }
     });
   }
 
+  private _getCurrentUser() {
+    this.usersService
+      .observeCurrentUser()
+      .pipe(takeUntil(this.endSubs$))
+      .subscribe((user) => {
+        if (user) {
+          this.userId = user.id;
+          console.log(this.userId);
+        }
+      });
+  }
 
 
 }

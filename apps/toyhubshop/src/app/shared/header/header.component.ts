@@ -18,14 +18,20 @@ export class HeaderComponent implements OnInit {
     }
 
     private _getCurrentUser() {
-        this.usersService
-          .observeCurrentUser()
-          .pipe(takeUntil(this.unsubscribe$))
-          .subscribe((user) => {
-            if (user) {
-              this.userId = user.id;
-              console.log(this.userId);
-            }
-          });
+      try {
+        // this.usersService
+        //   .observeCurrentUser()
+        //   .pipe(takeUntil(this.unsubscribe$))
+        //   .subscribe((user) => {
+        //     if (user) {
+        //       this.userId = user.id;
+        //       console.log(this.userId);
+        //     }
+        //   });
+        console.log('Current user id: ', this.userId);
       }
+      catch (error) {
+        console.error(error);
+      }
+    }
 }
