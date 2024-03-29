@@ -15,6 +15,8 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { ThankYouComponent } from './pages/thank-you/thank-you.component';
 import { AuthGuard } from '@toys-hub/users';
+import { HistoryPageComponent } from './pages/history-page/history-page.component';
+import { HistoryItemComponent } from './component/history-item/history-item.component';
 
 const routes: Routes = [
   {
@@ -29,12 +31,18 @@ const routes: Routes = [
   {
     path: 'success',
     component: ThankYouComponent
-  }
+  },
+  {
+    path: 'history',
+    canActivate: [AuthGuard],
+    component: HistoryPageComponent
+  },
+  
 ];
 @NgModule({
   imports: [CommonModule, BadgeModule, RouterModule.forChild(routes), ButtonModule, InputNumberModule, FormsModule, ReactiveFormsModule, InputTextModule, InputMaskModule, DropdownModule],
-  declarations: [CartIconComponent, CartPageComponent, OrderSummaryComponent, CheckoutPageComponent, ThankYouComponent],
-  exports: [CartIconComponent, CartPageComponent, OrderSummaryComponent],
+  declarations: [CartIconComponent, CartPageComponent, OrderSummaryComponent, CheckoutPageComponent, ThankYouComponent, HistoryPageComponent, HistoryItemComponent],
+  exports: [CartIconComponent, CartPageComponent, OrderSummaryComponent, HistoryPageComponent, HistoryItemComponent],
 })
 export class OrdersModule {
   constructor(cartService: CartService) {

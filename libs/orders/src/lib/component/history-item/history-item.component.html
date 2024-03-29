@@ -1,0 +1,27 @@
+<div class="history-item" *ngIf="order">
+    <div class="history-item-wrapper">
+        <div class="history-item-header">
+            <div class="header-left">
+                <h3 class="orderid">Order #: {{order.id}}</h3>
+            </div>
+        </div>
+        <div class="history-item-overview">
+            <h4 class="date">Ordered on {{order.dateOrdered | date:'MMMM dd, yyyy'}}</h4>
+        </div>
+        <div class="orders-item-list">
+            <div class="order-item" *ngFor="let orderItem of order.orderItems">
+                <div class="product-info">
+                    <p class="product-name">{{orderItem.product.name}}</p>
+                    <p class="product-quantity">Quantity: {{orderItem.quantity}}</p>
+                    <p class="product-price">{{orderItem.product.price * orderItem.quantity | currency:'CAD'}}</p>
+                </div>
+                <div class="product-image">
+                    <img [routerLink]="'/products/' + orderItem.product.id" [src]="orderItem.product.image" class="image" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="history-item-footer">
+            <h3 class="total">TOTAL: {{order.totalPrice | currency:'CAD'}}</h3>
+        </div>
+    </div>
+</div>
