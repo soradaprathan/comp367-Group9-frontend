@@ -1,0 +1,25 @@
+<div class="history-list">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <h1 class="page-title">Order History</h1>
+            <!-- <h5 class="product-name">{{ product.name }}</h5> -->
+        </div>
+        <div class="p-col-12 p-md-6">
+            <!-- <p-rating [(ngModel)]="avgRating" [cancel]="false" [disabled]="true"></p-rating>
+            <h5 class="avg-rating">{{ avgRating }} out of {{ lstReviews.length }} reviews</h5> -->
+        </div>
+
+        <div class="p-col-12">
+                <!-- <p-button label="Add Review" (onClick)="navigateToAddReview()"></p-button> -->
+                <!-- <p-button label="Back to Product" icon="pi pi-arrow-left" (onClick)="navigateToProduct()"></p-button> -->
+        </div>
+
+        <div class="p-col-12">
+            <div class="orders-list">
+                <div *ngFor="let order of lstOrders">
+                    <orders-history-item [order]="order"></orders-history-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

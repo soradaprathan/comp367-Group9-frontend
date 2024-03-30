@@ -14,7 +14,10 @@
             </toyhub-nav>
         </div>
         <div class="p-col-1 tools">
-            <i class="pi pi-user"></i>
+            
+            <a [href]="userId ? '/history' : '/login'">
+                <i class="pi pi-user"></i>
+            </a>
             <orders-cart-icon></orders-cart-icon>
         </div>
     </div>
