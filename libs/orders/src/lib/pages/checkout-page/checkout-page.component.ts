@@ -100,38 +100,27 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.ordersService.createCheckoutSession(this.orderItems).subscribe((error) => {
+    const order: Order = {
+      orderItems: this.orderItems,
+      shippingAddress1: this.checkoutForm.street.value,
+      shippingAddress2: this.checkoutForm.apartment.value,
+      city: this.checkoutForm.city.value,
+      zip: this.checkoutForm.zip.value,
+      country: this.checkoutForm.country.value,
+      phone: this.checkoutForm.phone.value,
+      status: "Pending",
+      user: this.userId,
+      dateOrdered: `${Date.now()}`,
+    };
+
+    this.ordersService.cacheOrderData(order);
+        this.ordersService.createCheckoutSession(this.orderItems).subscribe((error) => {
       if(error) {
         console.log('error in redirect to payment');
       }
     });
 
 
-    // const order: Order = {
-    //   orderItems: this.orderItems,
-    //   shippingAddress1: this.checkoutForm.street.value,
-    //   shippingAddress2: this.checkoutForm.apartment.value,
-    //   city: this.checkoutForm.city.value,
-    //   zip: this.checkoutForm.zip.value,
-    //   country: this.checkoutForm.country.value,
-    //   phone: this.checkoutForm.phone.value,
-    //   status: "Pending",
-    //   user: this.userId,
-    //   dateOrdered: `${Date.now()}`,
-    // }
-
-    // this.ordersService.createOrder(order).subscribe(
-    //   () => {
-    //     //redirect to thank you page // payment
-    //     this.cartService.emptyCart();
-    //     this.router.navigate(['/success']);
-    //     console.log("Order Placed Successfully");
-    //   },
-    //   () => {
-    //     //display some message to user
-    //     console.log("Order Placed Failed");
-    //   }
-    // );
   }
 
   get checkoutForm() {

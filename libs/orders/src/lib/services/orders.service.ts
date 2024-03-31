@@ -56,4 +56,16 @@ export class OrdersService {
             return this.stripeService.redirectToCheckout({sessionId: session.id});
         }));
     }
+
+    cacheOrderData(order: Order) {
+        localStorage.setItem('orderData', JSON.stringify(order));
+    }
+
+    getCachedOrderData(): Order {
+        return JSON.parse(localStorage.getItem('orderData'));
+    }
+
+    removeCachedOrderData() {
+        localStorage.removeItem('orderData');
+    }
 }
