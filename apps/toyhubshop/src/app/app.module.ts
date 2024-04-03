@@ -40,7 +40,7 @@ const routes: Routes = [
         UiModule,
         OrdersModule,
         UsersModule,
-        NgxStripeModule.forRoot('pk_test_51P0DIk2LyYhslQjEhn3Jex41F4zMBFnNeVfxFXQwxQOuvPryWgBDEHqXgcv6ocw7A6ANp48E1GlaZik6oCotpsbb00fcudgi1O')
+        NgxStripeModule.forRoot('pk_test_51P1XY1JEBWLb6WOmVCsCgrVyWuoOAJBHdXiYGKmhJuDfJSLVC407tHjWl0XD72PXyv8srK9NtvEYTNYhDkwd07Zb00mKzsmcYx')
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
