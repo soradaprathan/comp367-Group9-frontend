@@ -18,6 +18,7 @@ import { OrdersModule } from '@toys-hub/orders';
 import { JwtInterceptor, UsersModule } from '@toys-hub/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const routes: Routes = [
     {
@@ -38,7 +39,8 @@ const routes: Routes = [
         BrowserAnimationsModule,
         UiModule,
         OrdersModule,
-        UsersModule
+        UsersModule,
+        NgxStripeModule.forRoot('pk_test_51P0DIk2LyYhslQjEhn3Jex41F4zMBFnNeVfxFXQwxQOuvPryWgBDEHqXgcv6ocw7A6ANp48E1GlaZik6oCotpsbb00fcudgi1O')
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]

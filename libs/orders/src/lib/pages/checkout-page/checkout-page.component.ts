@@ -111,20 +111,16 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
       status: "Pending",
       user: this.userId,
       dateOrdered: `${Date.now()}`,
-    }
+    };
 
-    this.ordersService.createOrder(order).subscribe(
-      () => {
-        //redirect to thank you page // payment
-        this.cartService.emptyCart();
-        this.router.navigate(['/success']);
-        console.log("Order Placed Successfully");
-      },
-      () => {
-        //display some message to user
-        console.log("Order Placed Failed");
+    this.ordersService.cacheOrderData(order);
+        this.ordersService.createCheckoutSession(this.orderItems).subscribe((error) => {
+      if(error) {
+        console.log('error in redirect to payment');
       }
-    );
+    });
+
+
   }
 
   get checkoutForm() {
