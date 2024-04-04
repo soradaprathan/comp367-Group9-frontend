@@ -15,7 +15,7 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { CategoriesFormsComponent } from './pages/categories/categories-forms/categories-forms.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
-import { AuthGuard, JwtInterceptor, UsersModule } from '@toys-hub/users';
+import { AuthGuard, AdminPermissionGuard, JwtInterceptor, UsersModule } from '@toys-hub/users';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NgxStripeModule } from 'ngx-stripe';
@@ -62,7 +62,7 @@ const routes: Routes = [
     {
         path: '',
         component: ShellComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminPermissionGuard],
         children: [
             {
                 path: '',
