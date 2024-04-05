@@ -1,37 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from '@toys-hub/users';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService, UsersService } from '@toys-hub/users';
 import { Subject } from 'rxjs';
 
 @Component({
     selector: 'toyshop-header',
     templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
-    constructor(private usersService: UsersService) {}
+export class HeaderComponent implements OnInit, OnDestroy {
+    constructor(private usersService: UsersService, private authService: AuthService) {}
 
-    userId: string;
+    isAuthenticated = false;
     unsubscribe$: Subject<any> = new Subject();
 
     ngOnInit(): void {
-        this._getCurrentUser();
+        this._checkAuth();
     }
 
-    private _getCurrentUser() {
-      try {
-        // this.usersService
-        //   .observeCurrentUser()
-        //   .pipe(takeUntil(this.unsubscribe$))
-        //   .subscribe((user) => {
-        //     if (user) {
-        //       this.userId = user.id;
-        //       console.log(this.userId);
-        //     }
-        //   });
-        console.log('Current user id: ', this.userId);
-      }
-      catch (error) {
-        console.error(error);
-      }
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+
+    logoutUser() {
+        this.authService.logout();
+        this.isAuthenticated = false;
+    }
+
+    private _checkAuth() {
+        // Subcsrbe to the auth state from the users service
+        this.usersService.isCurrentUserAuth().subscribe((isAuthenticated) => {
+            this.isAuthenticated = isAuthenticated;
+        });
     }
 }
