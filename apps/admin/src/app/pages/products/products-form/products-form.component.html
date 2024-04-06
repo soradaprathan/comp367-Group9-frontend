@@ -9,7 +9,7 @@
                         <p-button styleClass="p-button-primary p-mr-2" [label]="editmode ? 'Update' : 'Create'"
                             icon="pi pi-plus" (click)="onSubmit()"></p-button>
                         <p-button styleClass="p-button-secondary" label="Cancle" icon="pi pi-arrow-circle-left"
-                            (click)="onCancle()"></p-button>
+                            (click)="onCancel()"></p-button>
                     </div>
                 </p-toolbar>
             </div>
@@ -72,7 +72,8 @@
                         </div>
                         <div class="p-field p-col-12">
                             <label for="name">Main Image</label>
-                            <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+                            <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)"
+                                multiple name="images" />
                             <small *ngIf="productForm.image.invalid && isSubmitted" class="p-error">Image is
                                 required</small>
                             <div class="p-col-2 p-mt-2 p-pl-0">

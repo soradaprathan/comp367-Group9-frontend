@@ -15,7 +15,10 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { CategoriesFormsComponent } from './pages/categories/categories-forms/categories-forms.component';
 import { UsersListComponent } from './pages/users/users-list/users-list.component';
 import { UsersFormComponent } from './pages/users/users-form/users-form.component';
-import { AuthGuard, JwtInterceptor, UsersModule } from '@toys-hub/users';
+import { AuthGuard, AdminPermissionGuard, JwtInterceptor, UsersModule } from '@toys-hub/users';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -59,10 +62,10 @@ const routes: Routes = [
     {
         path: '',
         component: ShellComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard, AdminPermissionGuard],
         children: [
             {
-                path: 'dashboard',
+                path: '',
                 component: DashboardComponent
             },
             {
@@ -109,8 +112,12 @@ const routes: Routes = [
                 path: 'orders/:id',
                 component: OrdersDetailComponent
             }
-
         ]
+    },
+    {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full'
     }
 ];
 
@@ -133,10 +140,13 @@ const routes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forRoot(routes, { initialNavigation: 'enabled' }),
         UsersModule,
+        NgxStripeModule.forRoot('pk_test_51P1XY1JEBWLb6WOmVCsCgrVyWuoOAJBHdXiYGKmhJuDfJSLVC407tHjWl0XD72PXyv8srK9NtvEYTNYhDkwd07Zb00mKzsmcYx'),
         ...UX_MODULE
     ],
     providers: [MessageService, ConfirmationService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],

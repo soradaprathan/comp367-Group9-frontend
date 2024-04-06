@@ -1,0 +1,38 @@
+
+
+<div class="p-col-14">
+    <p-toolbar>
+        <p-button styleClass="p-button-secondary" label="Back to Reviews" icon="pi pi-arrow-left" (click)="navigateToReviews()"></p-button>
+    </p-toolbar>
+</div>
+
+<div class="review-page">
+    <h2>Write Review</h2>
+    <h4>{{ product.name }}</h4>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <form [formGroup]="reviewFormGroup" (ngSubmit)="saveReview()">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-12">
+                        <label for="comment">Comment</label><br />
+                        <textarea pInputTextarea formControlName="comment" [rows]="7" [cols]="30"></textarea>
+                        <small *ngIf="reviewFormGroup.get('comment').invalid && isSubmitted" class="p-error">
+                            Comment is required
+                        </small>
+                    </div>
+
+                    <div class="p-field p-col-12">
+                        <label for="rating">Rating</label><br />
+                        <p-rating formControlName="rating" [cancel]="false"></p-rating>
+                    </div>
+                </div>
+
+                <div class="p-col-2">
+                    <div class="review-button">
+                        <p-button (onClick)="saveReview()" label="Save Review" icon="pi pi-plus"></p-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

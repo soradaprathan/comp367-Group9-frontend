@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
@@ -13,8 +13,12 @@ export class ProductsService {
 
     constructor(private http: HttpClient) {}
 
-    getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiURLProducts);
+    getProducts(categoriesFilter?: string[]): Observable<Product[]> {
+        let params = new HttpParams();
+        if (categoriesFilter) {
+            params = params.append('categories', categoriesFilter.join(','));
+        }
+        return this.http.get<Product[]>(this.apiURLProducts, { params: params });
     }
 
     createProduct(productData: FormData): Observable<Product> {
@@ -34,5 +38,12 @@ export class ProductsService {
     }
     getProductsCount(): Observable<number> {
         return this.http.get<number>(`${this.apiURLProducts}/get/count`).pipe(map((objectValue: any) => objectValue.productCount));
+    }
+    getFeaturedProducts(count: number): Observable<Product[]> {
+        return this.http.get<Product[]>(`${this.apiURLProducts}/get/featured/${count}`);
+    }
+    //upload multiple images
+    updateProductImages(productId: string, formData: FormData): Observable<any> {
+        return this.http.put(`${this.apiURLProducts}/gallery-images/${productId}`, formData);
     }
 }

@@ -17,9 +17,9 @@
         "toyhubshop-e2e": { "tags": [], "implicitDependencies": ["toyhubshop"] },
         "admin": { "tags": [] },
         "admin-e2e": { "tags": [], "implicitDependencies": ["admin"] },
-        "ui": { "tags": [] },
         "products": { "tags": [] },
         "users": { "tags": [] },
-        "orders": { "tags": [] }
+        "orders": { "tags": [] },
+        "ui": { "tags": [] }
     }
 }

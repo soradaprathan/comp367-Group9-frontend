@@ -7,8 +7,8 @@
             "extends": ["plugin:@nrwl/nx/angular", "plugin:@angular-eslint/template/process-inline-templates"],
             "parserOptions": { "project": ["libs/products/tsconfig.*?.json"] },
             "rules": {
-                "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "toys-hub", "style": "camelCase" }],
-                "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "toys-hub", "style": "kebab-case" }]
+                "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "products", "style": "camelCase" }],
+                "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "products", "style": "kebab-case" }]
             }
         },
         { "files": ["*.html"], "extends": ["plugin:@nrwl/nx/angular-template"], "rules": {} }
