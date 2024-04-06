@@ -30,7 +30,7 @@ const routes: Routes = [
     declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, { useHash: true }),
         HttpClientModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot([]),
