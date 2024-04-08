@@ -30,7 +30,7 @@ const routes: Routes = [
     declarations: [AppComponent, HomePageComponent, HeaderComponent, FooterComponent, NavComponent],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(routes, { useHash: true }),
+        RouterModule.forRoot(routes, { useHash: true }),
         HttpClientModule,
         StoreModule.forRoot({}),
         EffectsModule.forRoot([]),
@@ -40,7 +40,7 @@ const routes: Routes = [
         UiModule,
         OrdersModule,
         UsersModule,
-        NgxStripeModule.forRoot('pk_test_51P1XY1JEBWLb6WOmVCsCgrVyWuoOAJBHdXiYGKmhJuDfJSLVC407tHjWl0XD72PXyv8srK9NtvEYTNYhDkwd07Zb00mKzsmcYx')
+        NgxStripeModule.forRoot('pk_test_51P32IM056HCTBSD5Z4ExG73o2qgh2HxpecKOU895QasCfdE6xTAaHYKtSQmoVy99Phm0V1iRfy7e4a4tmg8gqzUF00YCMu0r8y')
     ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
     bootstrap: [AppComponent]
