@@ -1,9 +1,21 @@
 version: "3"
 
 services:
-  backend-prod:
-    container_name: backend-prod
-    image: sorada1111/eshop:backend-prod
-
+  frontend-prod:
+    container_name: frontend-prod
+    image: sorada1111/eshop:front1-prod
+    environment:
+      CLIENT_URL: http://backend-prod:3300
     ports:
-      - "3300:3000"
+      - "7100:4100"
+
+  frontend-shop-prod:
+    container_name: frontend-shop-prod
+    image: sorada1111/eshop:front2-prod
+    environment:
+      CLIENT_URL: http://backend-prod:3300
+    ports:
+      - "7200:4200"
+
+
+      

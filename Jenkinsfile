@@ -123,30 +123,38 @@ pipeline {
              }
          }
 
-    //     stage('Deployment Staging') {
-    //         steps {
-    //             script {
-    //                 bat "docker tag sorada1111/eshop:backend-dev sorada1111/eshop:backend-staging"
-    //                 bat "docker push sorada1111/eshop:backend-staging"      
-    //                 bat "docker pull sorada1111/eshop:backend-staging"    
-    //                 bat "docker compose -f docker-compose-staging.yaml down"
-    //                 bat "docker compose -f docker-compose-staging.yaml up -d --build"      
-    //             }       
-    //         }
-    //     }
+        stage('Deployment Staging') {
+            steps {
+                script {
+
+                    bat "docker tag sorada1111/eshop:front1-dev sorada1111/eshop:front1-staging"
+                    bat "docker push sorada1111/eshop:front1-staging"      
+                    bat "docker pull sorada1111/eshop:front1-staging"  
+                    bat "docker tag sorada1111/eshop:front2-dev sorada1111/eshop:front2-staging"
+                    bat "docker push sorada1111/eshop:front2-staging"      
+                    bat "docker pull sorada1111/eshop:front2-staging"     
+                    bat "docker compose -f docker-compose-staging.yaml down"
+                    bat "docker compose -f docker-compose-staging.yaml up -d --build"      
+                }       
+            }
+        }
 
 
-    //     stage('Deployment Production') {
-    //         steps {
-    //             script {
-    //                 bat "docker tag sorada1111/eshop:backend-dev sorada1111/eshop:backend-prod"
-    //                 bat "docker push sorada1111/eshop:backend-prod"      
-    //                 bat "docker pull sorada1111/eshop:backend-prod"    
-    //                 bat "docker compose -f docker-compose-prod.yaml down"
-    //                 bat "docker compose -f docker-compose-prod.yaml up -d --build"      
-    //             }       
-    //         }
-    //     }
+        stage('Deployment Production') {
+            steps {
+                script {
+
+                    bat "docker tag sorada1111/eshop:front1-dev sorada1111/eshop:front1-prod"
+                    bat "docker push sorada1111/eshop:front1-prod"      
+                    bat "docker pull sorada1111/eshop:front1-prod"  
+                    bat "docker tag sorada1111/eshop:front2-dev sorada1111/eshop:front2-prod"
+                    bat "docker push sorada1111/eshop:front2-prod"      
+                    bat "docker pull sorada1111/eshop:front2-prod"   
+                    bat "docker compose -f docker-compose-prod.yaml down"
+                    bat "docker compose -f docker-compose-prod.yaml up -d --build"      
+                }       
+            }
+        }
 
         
 
