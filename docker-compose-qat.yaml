@@ -1,9 +1,18 @@
 version: "3"
 
 services:
-  backend-qat:
-    container_name: backend-qat
-    image: sorada1111/eshop:backend-qat
-
+  frontend-qat:
+    container_name: frontend-qat
+    image: sorada1111/eshop:front1-qat
+    environment:
+      CLIENT_URL: http://backend-dev:3100
     ports:
-      - "3100:3000"
+      - "5100:5100"
+
+  frontend-shop-qat:
+    container_name: frontend-shop-qat
+    image: sorada1111/eshop:front2-qat
+    environment:
+      CLIENT_URL: http://backend-dev:3100
+    ports:
+      - "5200:5200"

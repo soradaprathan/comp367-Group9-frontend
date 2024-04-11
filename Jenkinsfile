@@ -108,17 +108,20 @@ pipeline {
             }
         }
 
-    //     stage('Deployment QAT') {
-    //         steps {
-    //             script {
-    //                 bat "docker tag sorada1111/eshop:backend-dev sorada1111/eshop:backend-qat"
-    //                 bat "docker push sorada1111/eshop:backend-qat"      
-    //                 bat "docker pull sorada1111/eshop:backend-qat"    
-    //                 bat "docker compose -f docker-compose-qat.yaml down"
-    //                 bat "docker compose -f docker-compose-qat.yaml up -d --build"      
-    //             }       
-    //         }
-    //     }
+         stage('Deployment QAT') {
+             steps {
+                 script {
+                     bat "docker tag sorada1111/eshop:front1-dev sorada1111/eshop:front1-qat"
+                     bat "docker push sorada1111/eshop:front1-qat"      
+                     bat "docker pull sorada1111/eshop:front1-qat"  
+                     bat "docker tag sorada1111/eshop:front2-dev sorada1111/eshop:front2-qat"
+                     bat "docker push sorada1111/eshop:front2-qat"      
+                     bat "docker pull sorada1111/eshop:front2-qat"    
+                     bat "docker compose -f docker-compose-qat.yaml down"
+                     bat "docker compose -f docker-compose-qat.yaml up -d --build"      
+                 }       
+             }
+         }
 
     //     stage('Deployment Staging') {
     //         steps {
