@@ -5,7 +5,7 @@ services:
     container_name: frontend-qat
     image: sorada1111/eshop:front1-qat
     environment:
-      CLIENT_URL: http://backend-dev:3100
+      CLIENT_URL: http://backend-qat:3100
     ports:
       - "5100:5100"
 
@@ -13,6 +13,6 @@ services:
     container_name: frontend-shop-qat
     image: sorada1111/eshop:front2-qat
     environment:
-      CLIENT_URL: http://backend-dev:3100
+      CLIENT_URL: http://backend-qat:3100
     ports:
       - "5200:5200"
