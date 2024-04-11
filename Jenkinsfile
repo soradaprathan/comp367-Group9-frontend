@@ -22,7 +22,7 @@ pipeline {
         stage('Checkout code') {
             steps {
                 
-                git branch: 'master', url: 'https://github.com/soradaprathan/comp367-Group9-frontend.git'
+                git branch: 'main', url: 'https://github.com/soradaprathan/comp367-Group9-frontend.git'
             }
         }
 
