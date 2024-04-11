@@ -7,7 +7,7 @@ services:
     environment:
       CLIENT_URL: http://backend-qat:3100
     ports:
-      - "5100:5100"
+      - "5100:4100"
 
   frontend-shop-qat:
     container_name: frontend-shop-qat
@@ -15,4 +15,4 @@ services:
     environment:
       CLIENT_URL: http://backend-qat:3100
     ports:
-      - "5200:5200"
+      - "5200:4200"
