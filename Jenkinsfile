@@ -55,34 +55,37 @@ pipeline {
 //                 //cobertura coberturaReportFile: '**/coverage/lcov.info'
 //             }
 //         }
-    // stage('Docker Build') {
-    //         steps {
-    //            script {                  
-    //                 bat "docker build -t ${IMAGE_NAME_VERSION} -f Dockerfile ."   
-    //                 bat "docker build -t ${IMAGE_NAME_VERSION_2} -f Dockerfile2 ."                 
-    //             }
-    //         }
-    //     }
+    stage('Docker Build') {
+            steps {
+               script {                  
+                    bat "docker build -t ${IMAGE_NAME_VERSION} -f Dockerfile ."   
+                    bat "docker build -t ${IMAGE_NAME_VERSION_2} -f Dockerfile2 ."                 
+                }
+            }
+        }
         
-    //     stage('Docker Login') {
-    //         steps {
-    //            script {    
-    //                   withCredentials([usernamePassword(credentialsId: 'dockerhubtoken', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-    //                   bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-    //                   }
-    //             }
-    //         }
-    //     }
+        stage('Docker Login') {
+            steps {
+               script {    
+                      withCredentials([usernamePassword(credentialsId: 'dockerhubtoken', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                      bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                      }
+                }
+            }
+        }
         
-    //     stage('Docker Push') {
-    //         steps {
-    //             script {
-    //                 bat "docker tag ${IMAGE_NAME_VERSION} ${IMAGE_NAME}"
-    //                 bat "docker push ${IMAGE_NAME}"
-    //                 bat "docker push ${IMAGE_NAME_VERSION}"                 
-    //             }       
-    //         }
-    //     }
+        stage('Docker Push') {
+            steps {
+                script {
+                    bat "docker tag ${IMAGE_NAME_VERSION} ${IMAGE_NAME}"
+                    bat "docker push ${IMAGE_NAME}"
+                    bat "docker push ${IMAGE_NAME_VERSION}"      
+                    bat "docker tag ${IMAGE_NAME_VERSION_2} ${IMAGE_NAME_2}"
+                    bat "docker push ${IMAGE_NAME_2}"
+                    bat "docker push ${IMAGE_NAME_VERSION_2}"            
+                }       
+            }
+        }
 
     //     stage('Docker Pull') {
     //         steps {
