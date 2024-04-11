@@ -87,25 +87,26 @@ pipeline {
             }
         }
 
-    //     stage('Docker Pull') {
-    //         steps {
-    //             script {
+        stage('Docker Pull') {
+            steps {
+                script {
                    
-    //                 bat "docker pull ${IMAGE_NAME}"
+                    bat "docker pull ${IMAGE_NAME}"
+                    bat "docker pull ${IMAGE_NAME_2}"
                                
-    //             }       
-    //         }
-    //     }
+                }       
+            }
+        }
 
-    //     stage('Deployment DEV') {
-    //         steps {
-    //             script {
-    //                 bat "docker compose -f docker-compose.yaml down"
-    //                 bat "docker compose -f docker-compose.yaml up -d --build"
+        stage('Deployment DEV') {
+            steps {
+                script {
+                    bat "docker compose -f docker-compose.yaml down"
+                    bat "docker compose -f docker-compose.yaml up -d --build"
                                
-    //             }       
-    //         }
-    //     }
+                }       
+            }
+        }
 
     //     stage('Deployment QAT') {
     //         steps {
