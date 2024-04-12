@@ -9,13 +9,13 @@ services:
     ports:
       - "7100:4100"
 
-  frontend-shop-prod:
-    container_name: frontend-shop-prod
-    image: sorada1111/eshop:front2-prod
-    environment:
-      CLIENT_URL: http://backend-prod:3300
-    ports:
-      - "7200:4200"
+  # frontend-shop-prod:
+  #   container_name: frontend-shop-prod
+  #   image: sorada1111/eshop:front2-prod
+  #   environment:
+  #     CLIENT_URL: http://backend-prod:3300
+  #   ports:
+  #     - "7200:4200"
 
 
       
