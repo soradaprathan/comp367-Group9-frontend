@@ -9,13 +9,13 @@ services:
     ports:
       - "6100:4100"
 
-  # frontend-shop-staging:
-  #   container_name: frontend-shop-staging
-  #   image: sorada1111/eshop:front2-staging
-  #   environment:
-  #     CLIENT_URL: http://backend-staging:3200
-  #   ports:
-  #     - "6200:4200"
+  frontend-shop-staging:
+    container_name: frontend-shop-staging
+    image: sorada1111/eshop:front2-staging
+    environment:
+      CLIENT_URL: http://backend-staging:3200
+    ports:
+      - "6200:4200"
 
 
 

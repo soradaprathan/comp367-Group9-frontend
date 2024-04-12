@@ -9,10 +9,10 @@ services:
     ports:
       - "5100:4100"
 
-  # frontend-shop-qat:
-  #   container_name: frontend-shop-qat
-  #   image: sorada1111/eshop:front2-qat
-  #   environment:
-  #     CLIENT_URL: http://backend-qat:3100
-  #   ports:
-  #     - "5200:4200"
+  frontend-shop-qat:
+    container_name: frontend-shop-qat
+    image: sorada1111/eshop:front2-qat
+    environment:
+      CLIENT_URL: http://backend-qat:3100
+    ports:
+      - "5200:4200"
