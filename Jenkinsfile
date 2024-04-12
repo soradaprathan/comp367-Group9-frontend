@@ -47,14 +47,15 @@ pipeline {
             }
         }
         
-       stage('Test and Coverage') {
+    stage('Test and Coverage') {
         steps {
             script {               
-                bat 'npm install'                    
+                bat 'npm ci'                    
                 bat 'npm test'
             }
         }
-    }    
+    }
+           
         stage('Docker Login') {
             steps {
                script {    
