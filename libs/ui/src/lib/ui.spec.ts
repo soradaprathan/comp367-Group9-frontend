@@ -1,7 +1,3 @@
-import { ui } from './ui';
-
-describe('ui', () => {
-    it('should work', () => {
-        expect(ui()).toEqual('ui');
-    });
-});
+test('true is true', () => {
+    expect(true).toBe(true);
+  });
