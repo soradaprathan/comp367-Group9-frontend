@@ -24,6 +24,11 @@ pipeline {
             }
         }
 
+    stage('Checkout') {
+        steps {
+            checkout scm // This step checks out the source code from the configured SCM repository
+        }
+    }
 
     stage('sonar'){     
         steps {
@@ -49,7 +54,8 @@ pipeline {
         
     stage('Test and Coverage') {
         steps {
-            script {               
+            script {  
+                bat 'mkdir -p reports'             
                 bat 'npm ci'                    
                 bat 'npm test'
             }
@@ -154,7 +160,8 @@ pipeline {
 
     post {
         always {
-            cobertura coberturaReportFile: '**/coverage/clover.xml'
+            // cobertura coberturaReportFile: '**/coverage/clover.xml'
+             junit 'reports/test-results.xml'
             echo 'The pipeline is finished.'
         }
     }
