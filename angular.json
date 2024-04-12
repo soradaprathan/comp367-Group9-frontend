@@ -78,7 +78,10 @@
                     "outputs": ["coverage/apps/toyhubshop"],
                     "options": {
                         "jestConfig": "apps/toyhubshop/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
@@ -186,7 +189,10 @@
                     "outputs": ["coverage/apps/admin"],
                     "options": {
                         "jestConfig": "apps/admin/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
@@ -234,7 +240,10 @@
                     "outputs": ["coverage/libs/products"],
                     "options": {
                         "jestConfig": "libs/products/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
@@ -268,7 +277,10 @@
                     "outputs": ["coverage/libs/users"],
                     "options": {
                         "jestConfig": "libs/users/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
@@ -302,7 +314,10 @@
                     "outputs": ["coverage/libs/orders"],
                     "options": {
                         "jestConfig": "libs/orders/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
@@ -323,7 +338,10 @@
                     "outputs": ["coverage/libs/ui"],
                     "options": {
                         "jestConfig": "libs/ui/jest.config.js",
-                        "passWithNoTests": true
+                        "passWithNoTests": true,
+                        "collectCoverage": true,
+                        "coverageReporters": ["html", "text", "cobertura"],
+                        "coverageDirectory": "coverage"
                     }
                 }
             }
