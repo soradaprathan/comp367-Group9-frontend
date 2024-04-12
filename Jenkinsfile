@@ -153,7 +153,7 @@ pipeline {
 
     post {
         always {
-            cobertura coberturaReportFile: '**/coverage/cobertura-coverage.xml'
+            cobertura coberturaReportFile: '**/coverage/clover.xml'
             echo 'The pipeline is finished.'
         }
     }
