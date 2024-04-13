@@ -159,7 +159,7 @@ pipeline {
 
     post {
         always {
-            clover 'coverage/clover.xml'
+            clover(cloverReportFileName: 'coverage/clover.xml')
 
             echo 'The pipeline is finished.'
         }
