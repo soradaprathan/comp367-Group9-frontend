@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // triggers {
-    //     cron('H/5 * * * *') // Poll SCM every 5 minutes
-    // }
+    triggers {
+        cron('H/2 * * * *') // Poll SCM every 2 minutes
+    }
 
     tools {
         nodejs 'NodeJS'
