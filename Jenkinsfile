@@ -162,7 +162,7 @@ pipeline {
             // Clover coverage report configuration
             clover(
                 cloverReportDir: 'coverage',
-                cloverReportFileName: 'clover.xml',
+                cloverReportFileName: '**/clover.xml',
                 healthyTarget: [
                     methodCoverage: 70,
                     conditionalCoverage: 80,
