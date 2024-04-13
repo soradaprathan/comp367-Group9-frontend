@@ -54,11 +54,9 @@ pipeline {
         
     stage('Test and Coverage') {
         steps {
-            script { 
-                bat 'npm install -g istanbul-combine'              
+            script {                              
                 bat 'npm ci'                    
-                bat 'npm test' 
-                bat 'npx istanbul-combine -d combined-coverage -r html -r text -r cobertura apps/*/coverage/cobertura-coverage.xml libs/*/coverage/cobertura-coverage.xml'
+                bat 'npx jest --coverage --coverageReporters=clover' 
             }
         }
     }
@@ -161,11 +159,7 @@ pipeline {
 
     post {
         always {
-            // Archive the combined coverage reports
-            archiveArtifacts artifacts: 'combined-coverage/**/*', allowEmptyArchive: true
-
-            // Publish the Cobertura coverage report
-            cobertura coberturaReportFile: 'combined-coverage/cobertura-coverage.xml'
+            clover 'coverage/clover.xml'
 
             echo 'The pipeline is finished.'
         }
