@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     // triggers {
-    //     scm('H/2 * * * *') // Poll SCM every 2 minutes
+    //     cron('H/2 * * * *') // Poll SCM every 2 minutes
     // }
 
     tools {
