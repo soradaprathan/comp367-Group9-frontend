@@ -54,9 +54,11 @@ pipeline {
         
     stage('Test and Coverage') {
         steps {
-            script {               
+            script { 
+                bat 'npm install -g istanbul-combine'              
                 bat 'npm ci'                    
-                bat 'npm test'
+                bat 'npm test' 
+                bat 'npx istanbul-combine -d combined-coverage -r html -r text -r cobertura apps/*/coverage/cobertura-coverage.xml libs/*/coverage/cobertura-coverage.xml'
             }
         }
     }
@@ -159,11 +161,11 @@ pipeline {
 
     post {
         always {
-            cobertura coberturaReportFile: '**/coverage/clover.xml'
-             script {
-                def scannerHome = tool 'SonarQube';
-                bat script: "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=frontend -Dsonar.projectName=frontend -Dsonar.projectVersion=1.0 -Dsonar.sources=. -Dsonar.sourceEncoding=UTF-8 -Dsonar.host.url=http://10.0.0.47:9000/ -Dsonar.login=sqp_b7d67d294a34ba50eee470b55603e6679a1026b4", returnStatus: true
-            }
+            // Archive the combined coverage reports
+            archiveArtifacts artifacts: 'combined-coverage/**/*', allowEmptyArchive: true
+
+            // Publish the Cobertura coverage report
+            cobertura coberturaReportFile: 'combined-coverage/cobertura-coverage.xml'
 
             echo 'The pipeline is finished.'
         }
