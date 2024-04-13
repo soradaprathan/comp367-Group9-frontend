@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    triggers {
-        scm('H/2 * * * *') // Poll SCM every 2 minutes
-    }
+    // triggers {
+    //     scm('H/2 * * * *') // Poll SCM every 2 minutes
+    // }
 
     tools {
         nodejs 'NodeJS'
