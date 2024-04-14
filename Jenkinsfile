@@ -17,12 +17,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout code') {
-            steps {
+        // stage('Checkout code') {
+        //     steps {
                 
-                git branch: 'main', url: 'https://github.com/soradaprathan/comp367-Group9-frontend.git'
-            }
-        }
+        //         git branch: 'main', url: 'https://github.com/soradaprathan/comp367-Group9-frontend.git'
+        //     }
+        // }
 
     stage('Checkout') {
         steps {
