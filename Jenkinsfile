@@ -52,7 +52,7 @@ pipeline {
             }
         }
         
-    stage('Test and Coverage') {
+    stage('Test and  Code Coverage') {
         steps {
             script {                              
                 bat 'npm ci'                    
